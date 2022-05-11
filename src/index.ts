@@ -5,6 +5,7 @@ import { createClientTable, insertValues } from './queries/clients-table';
 export async function handler(event: YC.CloudFunctionsHttpEvent, context: YC.CloudFunctionsHttpContext) {
   // возможно Вы захотите передать в функцию какие то параметры в get строке
   const { api_key, format, fields, brands } = event.queryStringParameters;
+  const data = event.body;
 
   if (!api_key) {
     return {
@@ -17,7 +18,7 @@ export async function handler(event: YC.CloudFunctionsHttpEvent, context: YC.Clo
   await initDb();
 
   await createClientTable(api_key);
-  await insertValues(api_key);
+  await insertValues(api_key, data);
 
   await driver.destroy();
 

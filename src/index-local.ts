@@ -8,7 +8,7 @@ async function main() {
 
   const apiKey = 'apiKey22';
   await createClientTable(apiKey);
-  await insertValues(apiKey);
+  await insertValues(apiKey, {});
   await driver.destroy();
 }
 
