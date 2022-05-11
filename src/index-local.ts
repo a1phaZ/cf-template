@@ -4,12 +4,12 @@ import { driver, initDb } from './database';
 import { createClientTable, insertValues } from './queries/clients-table';
 
 async function main() {
-  await initDb();
+	await initDb();
 
-  const apiKey = 'apiKey22';
-  await createClientTable(apiKey);
-  await insertValues(apiKey, {});
-  await driver.destroy();
+	const apiKey = 'apiKey22';
+	await createClientTable(apiKey);
+	await insertValues(apiKey, {});
+	await driver.destroy();
 }
 
 main();
