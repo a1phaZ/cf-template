@@ -3,3 +3,4 @@ node_modules
 dist
 build
 service_account_key_file.json
+.env
