@@ -1,6 +1,6 @@
 import { driver } from '../database';
 import { Types } from 'ydb-sdk';
-import { TableDescription2 } from './helpers';
+import { cryptField, TableDescription2 } from './helpers';
 import { v4 as uuidv4 } from 'uuid';
 
 export async function createClientTable(apiKey: string) {
@@ -40,7 +40,8 @@ function getKeys(data: unknown): string {
 
 function getValues(data: unknown): string {
 	const result = Object.keys(data).reduce((acc, cur) => {
-		return [...acc, data[cur]];
+		const val = cur === 'password' ? cryptField('secret', data[cur]) : data[cur];
+		return [...acc, val];
 	}, []);
 	return result.join(', ');
 }
